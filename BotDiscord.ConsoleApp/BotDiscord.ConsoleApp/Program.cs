@@ -23,17 +23,19 @@ internal class Program
         _urlApi = ConfigurationManager.AppSettings["urlapi"];
 
         Console.WriteLine("Carregando Configuração");
-        _configuracao = CarregarConfiguracao();
+        CarregarConfiguracao();
 
+        Console.WriteLine("");
         Console.WriteLine("Carregando Bots");
         _bots = CarregarBots();
 
 
-        Console.WriteLine($"{_initialDate}: Iniciando processo de execução dos bots");
         Console.WriteLine("");
+        Console.WriteLine($"{_initialDate}: Iniciando processo de execução dos bots");
 
         while (true)
         {
+            Console.WriteLine("");
             Console.WriteLine("Aguardando bot para execução");
             awaitBot();
 
@@ -58,10 +60,10 @@ internal class Program
                         $"--window - size ={_configuracao.Width},{_configuracao.Height}" // Altera dimensões do navegador
                     );
 
-                    await page.GoToAsync("https://discord.com/login");    
+                    await page.GoToAsync("https://discord.com/login");
 
-                    Console.WriteLine("Fazendo os preparativos para execução do bot. Aguarde...");
                     Console.WriteLine("");
+                    Console.WriteLine("Fazendo os preparativos para execução do bot. Aguarde...");
 
                     try
                     {
@@ -70,6 +72,7 @@ internal class Program
                         await page.TypeAsync("#uid_5", login);
                         await page.TypeAsync("#uid_8", cripto.Descriptografar(password));
                         await page.Keyboard.PressAsync("Enter");
+                        await page.WaitForTimeoutAsync(_configuracao.TimeoutClose);
                     }
                     catch
                     {
@@ -89,8 +92,8 @@ internal class Program
                             await page.Keyboard.PressAsync("Enter");
 
                             var hour = $"{DateTime.Now.Hour.ToString("D2")}:{DateTime.Now.Minute.ToString("D2")}";
-                            Console.WriteLine($"{ hour} Mensagem: { _message} enviada");
                             Console.WriteLine("");
+                            Console.WriteLine($"{ hour} Mensagem: { _message} enviada");
                         }
                         catch (Exception ex)
                         {
@@ -110,21 +113,6 @@ internal class Program
         }
     }
 
-    static ConfigModel CarregarConfiguracao()
-    {
-        using (HttpClient http = new HttpClient())
-        {
-            var result = http.GetAsync($"{_urlApi}api/config/selecionar").Result;
-            var json = result.Content.ReadAsStringAsync().Result;
-            var config = JsonSerializer.Deserialize<ConfigModel>(json,
-                new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-            return config;
-        }
-    }
-
     static List<BotModel> CarregarBots()
     {
         using (HttpClient http = new HttpClient())
@@ -138,6 +126,18 @@ internal class Program
                 });
             return bots;
         }
+    }
+
+    static void CarregarConfiguracao()
+    {
+        _configuracao = new ConfigModel();
+        _configuracao.UserDataDir = ConfigurationManager.AppSettings["userdatadir"];
+        _configuracao.ExecutablePath = ConfigurationManager.AppSettings["executablepath"];
+        _configuracao.Headless = bool.Parse(ConfigurationManager.AppSettings["headless"]);
+        _configuracao.Height = int.Parse(ConfigurationManager.AppSettings["height"]);
+        _configuracao.Width = int.Parse(ConfigurationManager.AppSettings["width"]);
+        _configuracao.Channel = ConfigurationManager.AppSettings["channel"];
+        _configuracao.TimeoutClose = int.Parse(ConfigurationManager.AppSettings["TimeoutClose"]);
     }
 
     static void awaitBot()
