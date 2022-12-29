@@ -190,57 +190,6 @@ namespace BotDiscord.Infra.Dados.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BotDiscord.Dominio.Entidades.ConfigDominio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Channel")
-                        .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
-
-                    b.Property<string>("ExecutablePath")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Headless")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TimeoutClose")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserDataDir")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Configuracao");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Channel = "https://discord.com/channels/704737085126475776/763005091997286420",
-                            ExecutablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-                            Headless = false,
-                            Height = 1000,
-                            TimeoutClose = 5000,
-                            UserDataDir = "C:\\Users\\andersono\\AppData\\Local\\Google\\Chrome\\User Data\\Default",
-                            Width = 800
-                        });
-                });
-
             modelBuilder.Entity("BotDiscord.Dominio.Entidades.DiaDominio", b =>
                 {
                     b.Property<long>("Id")

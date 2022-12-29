@@ -9,7 +9,6 @@ namespace BotDiscord.Aplicacao.Mappings
         public DominioModelProfile()
         {
             CreateMap<BotDominio, BotModel>().ReverseMap();
-            CreateMap<ConfigDominio, ConfigModel>().ReverseMap();
             CreateMap<DiaDominio, DiaModel>().ReverseMap();
         }
     }

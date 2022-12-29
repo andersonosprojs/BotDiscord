@@ -32,25 +32,6 @@ namespace BotDiscord.Infra.Dados.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Configuracao",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserDataDir = table.Column<string>(type: "text", nullable: false),
-                    ExecutablePath = table.Column<string>(type: "text", nullable: false),
-                    Headless = table.Column<bool>(type: "boolean", nullable: false),
-                    Height = table.Column<int>(type: "integer", nullable: false),
-                    Width = table.Column<int>(type: "integer", nullable: false),
-                    Channel = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
-                    TimeoutClose = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Configuracao", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Dias",
                 columns: table => new
                 {
@@ -86,11 +67,6 @@ namespace BotDiscord.Infra.Dados.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Configuracao",
-                columns: new[] { "Id", "Channel", "ExecutablePath", "Headless", "Height", "TimeoutClose", "UserDataDir", "Width" },
-                values: new object[] { 1L, "https://discord.com/channels/704737085126475776/763005091997286420", "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", false, 1000, 5000, "C:\\Users\\andersono\\AppData\\Local\\Google\\Chrome\\User Data\\Default", 800 });
-
-            migrationBuilder.InsertData(
                 table: "Dias",
                 columns: new[] { "Id", "Descricao" },
                 values: new object[,]
@@ -110,9 +86,6 @@ namespace BotDiscord.Infra.Dados.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Bots");
-
-            migrationBuilder.DropTable(
-                name: "Configuracao");
 
             migrationBuilder.DropTable(
                 name: "Dias");

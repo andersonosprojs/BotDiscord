@@ -23,9 +23,6 @@ public static class InjecaoDependencia
         services.AddScoped<IBotRepositorio, BotRepositorio>();
         services.AddScoped<IBotServico, BotServico>();
 
-        services.AddScoped<IConfigRepositorio, ConfigRepositorio>();
-        services.AddScoped<IConfigServico, ConfigServico>();
-
         services.AddScoped<IDiaRepositorio, DiaRepositorio>();
         services.AddScoped<IDiaServico, DiaServico>();
 

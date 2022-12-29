@@ -10,7 +10,6 @@ namespace BotDiscord.Infra.Dados.Contexto
         { }
 
         public DbSet<DiaDominio> Dias { get; set; }
-        public DbSet<ConfigDominio> Configuracao { get; set; }
         public DbSet<BotDominio> Bots { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
