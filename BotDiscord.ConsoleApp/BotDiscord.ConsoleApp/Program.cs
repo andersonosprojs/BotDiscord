@@ -11,15 +11,17 @@ internal class Program
     static string _initialDate = $"{DateTime.Now.Year.ToString("D4")}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}";
     static List<BotModel>? _bots;
     static ConfigModel? _configuracao;
+    static string? _urlApi;
 
     private static async Task Main(string[] args)
     {
         var login = ConfigurationManager.AppSettings["login"];
         var password = ConfigurationManager.AppSettings["password"];
-
         var cripto = new CriptografiaServico();
 
         Console.Clear();
+        _urlApi = ConfigurationManager.AppSettings["urlapi"];
+
         Console.WriteLine("Carregando Configuração");
         _configuracao = CarregarConfiguracao();
 
@@ -112,7 +114,7 @@ internal class Program
     {
         using (HttpClient http = new HttpClient())
         {
-            var result = http.GetAsync("https://localhost:7298/api/config/selecionar").Result;
+            var result = http.GetAsync($"{_urlApi}api/config/selecionar").Result;
             var json = result.Content.ReadAsStringAsync().Result;
             var config = JsonSerializer.Deserialize<ConfigModel>(json,
                 new JsonSerializerOptions
@@ -127,7 +129,7 @@ internal class Program
     {
         using (HttpClient http = new HttpClient())
         {
-            var result = http.GetAsync("https://localhost:7298/api/bot/listar").Result;
+            var result = http.GetAsync($"{_urlApi}api/bot/listar").Result;
             var json = result.Content.ReadAsStringAsync().Result;
             var bots = JsonSerializer.Deserialize<List<BotModel>>(json,
                 new JsonSerializerOptions
