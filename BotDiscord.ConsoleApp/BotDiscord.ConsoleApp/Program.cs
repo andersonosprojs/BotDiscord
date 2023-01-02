@@ -27,7 +27,7 @@ internal class Program
 
         Console.WriteLine("");
         Console.WriteLine("Carregando Bots");
-        _bots = CarregarBots();
+        _bots = CarregarBotsLocal();
 
 
         Console.WriteLine("");
@@ -126,6 +126,28 @@ internal class Program
                 });
             return bots;
         }
+    }
+
+    static List<BotModel> CarregarBotsLocal()
+    {
+        var bots = new List<BotModel>();
+        bots.Add(new BotModel(1, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  Bom dia, Pessoal! ☀️ Bora bater ponto ⏰" }, new() { 1, 2, 3, 4, 5 }, 728, true, true));
+        bots.Add(new BotModel(2, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  Daily vai começar em breve... https://meet.jit.si/ClassJokers" }, new() { 1, 2, 3, 4, 5 }, 758, true, true));
+        bots.Add(new BotModel(3, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  Quem estiver em **chamados** dá uma olhada se o **Monitor Reinf** no servidor está 🆗" }, new() { 1, 2, 3, 4, 5 }, 800, true, true));
+        bots.Add(new BotModel(4, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Anderson Silva#8777 ** ) bater ponto ⏰ - Saída para o almoço" }, new() { 1, 2, 3, 4, 5 }, 1148, true, true));
+        bots.Add(new BotModel(5, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Catarina Saville#4042**, **@Rafael Miranda#8211** e **@Paulo Gustavo Lacerda#6849** ) bater ponto ⏰ - Saída para o almoço" }, new() { 1, 2, 3, 4, 5 }, 1158, true, true));
+        bots.Add(new BotModel(6, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Ana Paula Barony#3212** ) bater ponto ⏰ - Saída para o almoço" }, new() { 1, 2, 3, 4, 5 }, 1228, true, true));
+        bots.Add(new BotModel(7, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Anderson Silva#8777 ** ) bater ponto ⏰ - Volta do almoço" }, new() { 1, 2, 3, 4, 5 }, 1248, true, true));
+        bots.Add(new BotModel(8, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Catarina Saville#4042**, **@Rafael Miranda#8211** e **@Paulo Gustavo Lacerda#6849** ) bater ponto ⏰ - Volta do almoço" }, new() { 1, 2, 3, 4, 5 }, 1258, true, true));
+        bots.Add(new BotModel(9, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Vladimir Lara#2790** e ** @tarcisia.luciano#8800** ) bater ponto ⏰ - Saída para o almoço" }, new() { 1, 2, 3, 4, 5 }, 1258, true, true));
+        bots.Add(new BotModel(10, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Ana Paula Barony#3212** ) bater ponto ⏰ - Volta do almoço" }, new() { 1, 2, 3, 4, 5 }, 1328, true, true));
+        bots.Add(new BotModel(11, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  ( **@Vladimir Lara#2790** e ** @tarcisia.luciano#8800** ) bater ponto ⏰ - Volta do almoço" }, new() { 1, 2, 3, 4, 5 }, 1358, true, true));
+        bots.Add(new BotModel(12, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  **@Catarina Saville#4042**, **@Rafael Miranda#8211** e **@Paulo Gustavo Lacerda#6849**, hora boa pra **atualizar o pace** e/ou **movimentar tarefas** 👍" }, new() { 1, 2, 3, 4, 5 }, 1415, true, true));
+        bots.Add(new BotModel(13, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  **@Catarina Saville#4042**, **@Rafael Miranda#8211** e **@Paulo Gustavo Lacerda#6849**, por hoje é só! Não esqueçam de bater ponto ⏰" }, new() { 1, 2, 3, 4, 5 }, 1428, true, true));
+        bots.Add(new BotModel(14, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  Final do dia chegando, hora boa pra **atualizar o pace** e/ou **movimentar tarefas** 👍" }, new() { 1, 2, 3, 4, 5 }, 1648, true, true));
+        bots.Add(new BotModel(15, new() { "🤖 **⚠️ ATENÇÃO ⚠️**  Até amanhã, Pessoal! Não esqueçam de bater ponto ⏰",
+                                          "🤖 **⚠️ ATENÇÃO ⚠️**  Bom final de semana, Pessoal! Não esqueçam de bater ponto ⏰" }, new() { 1, 2, 3, 4, 5 }, 1658, true, true));
+        return bots;
     }
 
     static void CarregarConfiguracao()
